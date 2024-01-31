@@ -1,5 +1,5 @@
 [package]
-name = "bevy_game" # ToDo
+name = "pexel" # ToDo
 version = "0.1.0"
 publish = false
 authors = ["Nicolas Frey <nicolas.theo.frey@gmail.com>"] # ToDo: you are the author ;)
@@ -64,6 +64,7 @@ webbrowser = { version = "0.8", features = ["hardened"] }
 # keep the following in sync with Bevy's dependencies
 winit = { version = "0.28.7", default-features = false }
 image = { version = "0.24", default-features = false }
+smooth-bevy-cameras = "0.10.0"
 
 [build-dependencies]
 embed-resource = "2.4.1"
