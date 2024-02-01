@@ -1,4 +1,4 @@
-use crate::{post_processing::PostProcessSettings, GameState};
+use crate::{shaders::PostProcessSettings, GameState};
 use bevy::prelude::*;
 use smooth_bevy_cameras::controllers::fps::{FpsCameraBundle, FpsCameraController};
 
@@ -7,19 +7,17 @@ pub struct CameraPlugin;
 #[derive(Component)]
 pub struct Player;
 
-/// This plugin handles player related stuff like movement
-/// Player logic is only active during the State `GameState::Playing`
 impl Plugin for CameraPlugin {
     fn build(&self, app: &mut App) {
         app.add_systems(OnEnter(GameState::Playing), spawn_camera);
     }
 }
 
+#[allow(clippy::needless_update)] // because of webgl
 fn spawn_camera(mut commands: Commands) {
     commands
         .spawn(Camera3dBundle {
-            transform: Transform::from_xyz(0.0, 6., 12.0)
-                .looking_at(Vec3::new(0., 1., 0.), Vec3::Y),
+            transform: Transform::from_xyz(-2.0, 2.5, 5.0).looking_at(Vec3::ZERO, Vec3::Y),
             ..Default::default()
         })
         .insert(FpsCameraBundle::new(
@@ -33,5 +31,9 @@ fn spawn_camera(mut commands: Commands) {
             Vec3::new(0., 0., 0.),
             Vec3::Y,
         ))
-        .insert(PostProcessSettings { intensity: 0.02 });
+        .insert(PostProcessSettings {
+            pixellation_intensity: 0.003,
+            chrom_intensity: 5.,
+            ..default()
+        });
 }

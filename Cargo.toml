@@ -34,7 +34,7 @@ dev = [
 
 # All of Bevy's default features exept for the audio related ones (bevy_audio, vorbis), since they clash with bevy_kira_audio
 [dependencies]
-bevy = { version = "0.12", default-features = false, features = [
+bevy = { version = "0.12.1", default-features = false, features = [
     "animation",
     "bevy_asset",
     "bevy_gilrs",
